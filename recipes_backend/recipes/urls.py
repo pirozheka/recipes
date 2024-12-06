@@ -8,5 +8,5 @@ router.register(r'categories', CategoryViewSet, basename='category')
 router.register(r'recipes', RecipeViewSet, basename='recipe')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
