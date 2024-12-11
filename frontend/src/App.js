@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CategoryList />} />
           <Route path="/category/:categoryname" element={<RecipeList />} />
-          <Route path="/recipes/:title" element={<RecipeDetail />} />
+          <Route path="/recipes/:slug" element={<RecipeDetail />} />
         </Routes>
       </Router>
     </>

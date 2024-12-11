@@ -3,22 +3,22 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const RecipeDetail = () => {
-    const { id } = useParams();
+    const { slug } = useParams();
     const [recipe, setRecipe] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/recipes/${id}/`)
+        axios.get(`http://localhost:8000/api/recipes/${slug}/`)
             .then(response => setRecipe(response.data))
             .catch(error => console.error(error));
-    }, [id]);
+    }, [slug]);
 
-    if (!recipe) return <div>Loading...</div>;
+    if (!recipe) return <div>Загрузка...</div>;
 
     return (
         <div>
             <h1>{recipe.title}</h1>
-            <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
-            <p><strong>Instructions:</strong> {recipe.instructions}</p>
+            <p><strong>Ингредиенты:</strong> {recipe.ingredients}</p>
+            <p><strong>Как готовить:</strong> {recipe.instructions}</p>
         </div>
     );
 };
