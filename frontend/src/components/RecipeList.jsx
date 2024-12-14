@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/recipelist.css';
 
 const RecipeList = () => {
     const { categoryname } = useParams(); // Получаем транслит категории из URL
@@ -26,19 +27,24 @@ const RecipeList = () => {
 
     return (
         <div>
-            <h1>Рецепты в категории "{categoryName}"</h1>
-            {recipes.length > 0 ? (
-                <ul>
-                    {recipes.map(recipe => (
-                        <li key={recipe.id}>
-                            <a href={`/recipes/${recipe.slug}`}>{recipe.title}</a>
-                        </li>
-                    ))}
+            <div className="container">
+                <h1>Рецепты в категории "{categoryName}"</h1>
+                <div className='backspace'>
+                    <a href="/">← К списку категорий</a>
+                </div>
+                {recipes.length > 0 ? (
+                    <ul className='recipe__list'>
+                        {recipes.map(recipe => (
+                            <li key={recipe.id} className='recipe__list-item'>
+                                <a href={`/recipes/${recipe.slug}`}>{recipe.title}</a>
+                            </li>
+                        ))}
 
-                </ul>
-            ) : (
-                <p>Рецептов в этой категории пока нет.</p> // Сообщение, если рецептов нет
-            )}
+                    </ul>
+                ) : (
+                    <p>Рецептов в этой категории пока нет.</p> // Сообщение, если рецептов нет
+                )}
+            </div>
         </div>
     );
 };

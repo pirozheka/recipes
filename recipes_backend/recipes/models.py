@@ -4,6 +4,7 @@ from unidecode import unidecode
 
 class Category(models.Model):
     category_name = models.CharField(max_length=65, unique=True)
+    category_img = models.FileField(upload_to='uploads/', verbose_name='Изображение', blank=True)
     slug = models.SlugField(max_length=70, unique=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -28,6 +29,7 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     category_names = models.ManyToManyField(Category, through='RecipeCategory')
     slug = models.SlugField(max_length=260, unique=True, blank=True)
+    recipe_img = models.FileField(upload_to='uploads/', verbose_name='Изображение', blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/categorylist.css';
 
 const CategoryList = () => {
     const [categories, setCategories] = useState([]);
@@ -19,16 +20,23 @@ const CategoryList = () => {
 
     return (
         <div>
-            <h1>Категории рецептов</h1>
-            <ul>
-                {categories.map(category => (
-                    <li key={category.id}>
-                        <Link to={`/category/${category.slug}/`}>
-                            {category.category_name}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            <div className="container">
+                <h1>Категории рецептов</h1>
+                <ul className='categories'>
+                    {categories.map(category => (
+                        <li key={category.id}>
+                            <Link className='categories__item' to={`/category/${category.slug}/`}>
+                                <div className="img__container">
+                                    <img src={category.category_img} alt="" />
+                                </div>
+                                <div className="categories__item-caption">
+                                    {category.category_name}
+                                </div>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };
